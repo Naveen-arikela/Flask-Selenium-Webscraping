@@ -232,8 +232,6 @@ class SearchWithContainers:
 
 
 
-
-
 # website_url = 'http://makes.org.in/'
 # container_tag = 'body'
 # output_filename = 'test'
