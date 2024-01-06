@@ -8,27 +8,21 @@ from docx.shared import Inches
 
 import io
 import os
-import time
 import requests
 from PIL import Image
+
+from .constants import(
+    SPECIAL_CONTAINER_TAGS,
+    SPLIT_LINES,
+    FILE_EXTENSION,
+    PARAGRAPH_TAGS,
+    STATIC_FILES_OUTPUT_DIRECTORY,
+    OUTPUT_FILES_DIRECTORY
+)
 
 doc = Document()
 doc.add_heading('Centrix Web-Scraping Application', level=1)
 doc.add_paragraph('This Application developed by cardiovalens team')
-
-SPECIAL_CONTAINER_TAGS = ['body']
-SPLIT_LINES = '\n'
-FILE_EXTENSION = '.docx'
-PARAGRAPH_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']
-
-#Store images & meta in Local diretory
-STATIC_FILES_OUTPUT_DIRECTORY = 'static\images'
-OUTPUT_FILES_DIRECTORY = 'output_files'
-INPUT_FILES_DIRECTORY = 'input_files'
-
-os.makedirs(STATIC_FILES_OUTPUT_DIRECTORY, exist_ok=True)
-os.makedirs(OUTPUT_FILES_DIRECTORY, exist_ok=True)
-os.makedirs(INPUT_FILES_DIRECTORY, exist_ok=True)
 
 class ScrapWebiteContent:
     def __init__(self, domain_name, container_tag='body', tags=['p', 'img', 'table'], output_filename='web_scrape'):
@@ -92,7 +86,6 @@ class ScrapWebiteContent:
             except Exception as e:
                 print(f'WARNING!!:: Unsupported image format Exception: {e}')
                 continue
-
             # doc.save(self.output_file)
         return True
     
