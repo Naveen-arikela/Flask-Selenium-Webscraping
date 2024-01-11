@@ -1,0 +1,5 @@
+
+cmd
+cd "C:\\Program Files\\Google\\Chrome\\Application"
+
+chrome.exe --remote-debugging-port=8989 --user-data-dir="C:\Chrome-Driver\naveen-driver"
