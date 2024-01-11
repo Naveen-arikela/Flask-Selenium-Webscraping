@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Webscraping Application</title>
-
-  <!---Custom CSS Files--->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webscraping Application</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
+
 <body>
-  <div class="container">
-    <input type="checkbox" id="check">
-    <div class="login form">
-      <header>Centrix Healthcare</header>
-      <form method="POST" action="{{ url_for('run_webscrap') }}">
-        <input type="text" name="username" placeholder="Enter your username">
-        <input type="password" name="password" placeholder="Enter your password">
-        <a href="#">Forgot password?</a>
-        <input type="submit" class="button" value="Login">
-      </form>
-    </div>
-  </div>
+	<div class="main"> 	
+		<div style="padding-top: 50px">
+			<img src= "{{ url_for('static', filename='images/company_logo.png') }}" alt="logo loading..." class="center">
+		</div> 
+		<div class="signup">
+			<form method="POST" action="{{ url_for('run_webscrap') }}">
+				<div class ="login_credentials">
+					<div style="padding-top: 70px"></div>
+					<input type="hidden" name="form_type" value="login-form">
+					<input type="text" name="username" placeholder="Enter username" required>
+					<input type="password" name="password" placeholder="Enter password" required>		
+					<button type="submit">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
+
+

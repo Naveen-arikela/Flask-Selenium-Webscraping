@@ -23,3 +23,62 @@
         {% endfor %}
     </tbody>
 </table>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+</head>
+<body>
+    
+    <h1>Input Form</h1>
+    <form method="POST" action="/scrap-website">
+        <input type="hidden" name="form_type" value="scrap-website-form">
+        <label for="website_url">Website URL:</label>
+        <input type="text" id="website_url" name="website_url" required>
+        <br>
+        <label for="container_tags">Container Tags:</label>
+        <input type="text" id="container_tags" name="container_tags" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Simple Form</h2>
+    <form method="POST" action="/scrap-website">
+        <input type="hidden" name="form_type" value="display-tags-form">
+        {% if html_tags %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Select Tag</th>
+                        <th>Content Type</th>
+                        <th>Html Tag</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tag_keyname, tag_list in html_tags.items() %}
+                        {% if tag_keyname in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] %}
+                            {% for tag_item in tag_list %}
+                                {% set dict_items = tag_item.items()|first %}
+                                <tr>
+                                    <td><input type="checkbox" name="selected_tags" value="{{ tag_item }}"></td>
+                                    <td>{% if dict_items[0].startswith('h') %}Header{% else %}Paragraph{% endif %}</td>
+                                    <td>{{ dict_items[0] }}</td>
+                                    <td>{{ dict_items[1] }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input type="submit" value="Process Selected Tags">
+        {% else %}
+            <p>No HTML data available.</p>
+        {% endif %}
+    </form>
+</body>
+</html>
