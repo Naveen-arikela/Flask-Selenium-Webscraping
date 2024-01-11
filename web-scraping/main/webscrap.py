@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from tabulate import tabulate
-from selenium import webdriver
 
 from docx import Document
 from docx.shared import Inches
@@ -23,10 +22,13 @@ from .constants import(
     # HTML_CONTENT
     
 )
+from .common import get_local_chrome_driver_connection
 
 doc = Document()
 doc.add_heading('Centrix Web-Scraping Application', level=1)
-chrome_driver = webdriver.Chrome()
+
+#get chrome driver
+chrome_driver = get_local_chrome_driver_connection()
 class SearchWithContainers:
     def __init__(self, domain_name, container_tag='body', output_filename='web_scrape'):
         self.domain_name = domain_name
@@ -42,9 +44,11 @@ class SearchWithContainers:
         return soup
     
     def get_webpage_content(self):
-        chrome_driver.execute_script("window.open('','_blank');")
-        chrome_driver.switch_to.window(chrome_driver.window_handles[-1])
         chrome_driver.get(self.domain_name)
+
+        # chrome_driver.execute_script(f'''window.open("{self.domain_name}","_blank");''')
+        # # chrome_driver.execute_script("window.open('','_blank');")
+        # chrome_driver.switch_to.window(chrome_driver.window_handles[-1])
 
         """
         html_content = chrome_driver.page_source
@@ -178,10 +182,13 @@ class CreateWordDocument:
         doc.save(output_files_path)
 
 
-# website_url = 'http://makes.org.in/'
-# container_tag = 'body'
-# output_filename = 'test'
+def run_local_script(website_url='http://makes.org.in/'):
+    # website_url = 'http://makes.org.in/'
+    container_tag = 'body'
+    output_filename = 'test'
 
-# scrap_object = SearchWithContainers(website_url, container_tag, output_filename)
-# result = scrap_object.run_search_tags()
-# print(f'result:', result)
+    scrap_object = SearchWithContainers(website_url, container_tag, output_filename)
+    result = scrap_object.run_search_tags()
+    print(f'result:', result)
+
+# run_local_script()
