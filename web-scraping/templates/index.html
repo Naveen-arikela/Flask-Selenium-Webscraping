@@ -1,164 +1,403 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html>
 <head>
-  <title>Centrix HealthCare</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    body{
-        background-color: #f1ec7f;
-    }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>web-scraping</title>
+	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/scrap.css') }}">
+	<link rel="stylesheet" href="./style.css">
+  
+	<style>
+		table {
+	width: 100%;
+	height:100%;
+	border-collapse: collapse;
+	}
+	.body{
+	height: 100%;
+	}
+	.h3{
+	margin-top: 25px;
+	padding-left:50px
+	}
 
-    .input-field{
-        width: 300px;
-        padding: 10px;
-        font-size: 16px;
-        border: 3px solid #ccc;
-        border-radius: 10px;
-    }
+	th, td {
+	border: 0px solid #3498db;
+	padding: 16px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    .input-button{
-        width: 200px;
-        background-color: #3fc05a;
-    }
+	}
+	.table-al-l{
+	text-align: left;
+	}
 
-    .mrg-t{
-        margin-top: 40px;
-    }
+	th {
+	background-color: #A69594;
+	color: white;
+	padding: 10px 16px;
+	}
+	.button{
+	padding: 5px 10px;
+	background-color: #A69594;
+	color: white;
+	border: none;
+	cursor: pointer;
+	width: 25px;
+	height: auto;
+	padding-left: 45px;
+	stroke: none;
+	}
 
-    .mrg-ts{
-        margin-top: 50px;
-    }
-    
-    .mrg-toos{
-        margin-top: 20px;
-    }
+	.header{
+	display: flex;
+	}
+	.placeholder1{
+	padding-left: 30px;
+	padding-right: 30px;
+	}
+	/* .sticky{
+	position: fixed;
+	top: 0;
+	width: 100%
+	} */
+	.tabs-section{
+	width: 94%;
+	background-size: 100%;
+	margin-left: 3%;
+	margin-right: 3%;
+	}
+	.table{
+	border-collapse: collapse;
+	height: 80%;
+	width: 100%;
+	}
 
-    table {
-        width: 100%;
-        border: 1px solid black;
-    }
+	.tab-content-last{
+	display: flex;
+		
+	}
+	.tab-content-last{
+	padding-left: 300px;
+	nav-right: initial;
 
-    .td-alc{
-        text-align: center;
-    }
+	}
 
-    th{ 
-        background-color:#b6c33c;
-        border: 1px solid #ddd;
-  		padding: 8px;
-        text-align: center;
-    }
+	.button1{
+	/* background-color: #04AA6D; Green */
+	border: none;
+	color: #161515;
+	/* padding: 15px 32px; */
+	text-align:center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	}
+	.image-tooltip.popover {
+	max-width: none;
+	width: auto;
+	padding: 0;
+	stroke: none;
+	}
 
-    tr:nth-child(even){background-color: #f2f2f2;}
-    tr:hover {background-color: #ddd;}
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-    }
+	.image-tooltip.popover .popover-inner {
+	border: 0;
+	border-radius: 0;
+	}
+	.table-tooltip.popover {
+	max-width: none;
+	width: auto;
+	padding: 0;
+	}
 
-    .custom-checkbox {
-        width: 18px;
-        height: 18px;
-    }
-    .submit-btn{
-        background-color: #4CAF50;
-        color: white;
-    }
+	.table-tooltip.popover .popover-inner {
+	border: 0;
+	border-radius: 0;
+	}
+	.h2{
+	margin-left: 40px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: larger;
+	padding-left: 25px;
 
-    .input-field.get-tags {
-        background-color: #94b8b8;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: auto;
-        display: block;
-    }
-    #paragraphContainer {
-        display: none; /* Initially hide the container */
-    }
+	}
+	.placeholder11{
+	display: flex;
+	}
+	.login{
+	display: flex;
+	}
+	.img{
+	border-radius: 50%;
+	}
+	.head_lg{
+	display: flex;
+	}
+	.pcss3t.tab-content-last{
+	margin-left: 150px;
+	}
+	.button:hover {
+	box-shadow: 0px 0px 5px 2px #f4e9aebd;
+	bottom: 12px;
+	}
+	.container {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	height: 40px;
+	width: 50%;
+	padding-left:300px;
+	padding-top:10px;
+	}
 
-</style>
+	.progress-bar__container {
+	width: 50%;
+	height: 16px;
+	border-radius: 2rem;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s;
+	will-change: transform;
+	box-shadow: 0 0 5px #000000;
+	margin-left: 40px;
+	color: #0a0a0a;
+	padding-left:200px;
+	}
 
+	.progress-bar {
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	content: "";
+	background-color: #e76f51;
+	top:0;
+	bottom: 0;
+	left: -100%;
+	border-radius: inherit;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	color: white;
+	font-family: sans-serif;
+	padding-left:300px;
+	}
+
+	.progress-bar__text {
+	display: none;
+	}
+	.tab-content-last{
+	margin-left: 70%;
+	padding-left: 350px;
+	align-content: space-around;
+	}
+
+
+	.input-field{
+		height:30px;
+		margin-left:15px;
+		border-radius:10px;
+	}
+	</style>
 </head>
+
 <body>
-    <div class="container-fluid">
-        <div class=" container scrap-website-form mrg-t">
-            <form method="POST" action="/scrap-website">
+	<br>
+
+	<!-- logo-section  starts here-->
+	<div class="logo-section head_lg">
+		<img src="{{ url_for('static', filename='images/centrix-healthcare.png') }}"alt="centrix-healthcare" width="55px" height="55px"style="margin-left:30px;border-radius:45%">
+		<h1 style="padding-top: 2px; padding-left: 15px;">WEB-SCRAPING</h1>
+		<!--
+		<div class="container">
+			<div class="progress-bar__container">
+				<div class="progress-bar">
+					<span class="progress-bar__text">Uploaded Successfully!</span>
+				</div>
+			</div>
+		</div>
+		-->
+	</div>
+
+ 	<!-- input-section starts here -->
+	<div class="input-section">
+		<br>
+		<div class="header" style="align-items: center; margin-left:20%;">
+			<form method="POST" action="/scrap-website">
                 <input class="input-field" type="hidden" name="form_type" value="scrap-website-form">
-                <input class="input-field" type="text" name="website_url" placeholder="Enter website url" required>
-                <input class="input-field" type="text" placeholder="Optional: Search by div class">
-                <input class="input-field submit-btn" type="submit" value="Run Webscrapper">
-                <input type="hidden" name="form_type" value="display-tags-form">
-            </form>
-        </div>
 
-        <div class="paragraph-table mrg-ts">
-            <input type="hidden" name="form_type" value="display-tags-form">
-            {% if html_tags %}
-                <input class="input-field get-tags" type="submit" value="Show Paragraphs" onclick="toggleParagraphs()">
-                <form  method="POST" action="/scrap-website">
-                    <input type="hidden" name="form_type" value="display-tags-form">
-                    <div id="paragraphContainer">
-                        <table class="mrg-toos">
-                            <thead>
-                                <tr>
-                                    <th style="width:10%">Select Tag</th>
-                                    <th style="width:12%">Content Type</th>
-                                    <th style="width:9%">Html Tag</th>
-                                    <th style="width:69%">Content</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for tag_keyname, tag_list in html_tags.items() %}
-                                    {% if tag_keyname in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div'] %}
-                                        {% for tag_item in tag_list %}
-                                            {% set dict_items = tag_item.items()|first %}
-                                            <tr>
-                                                <td class="td-alc"><input type="checkbox" class="custom-checkbox" name="selected_tags" value="{{ tag_item }}"></td>
-                                                <td class="td-alc">{% if dict_items[0].startswith('h') %}Header{% else %}Paragraph{% endif %}</td>
-                                                <td class="td-alc">{{ dict_items[0] }}</td>
-                                                <td>{{ dict_items[1] }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <input class="input-field mrg-toos" type="submit" value="Save to Document">
-                </form>
-            {% endif %}
-        </div> 
-    </div>
+				<input class="input-field" type="text" name="website_url" placeholder="Enter website url" size="50px" required>
+				<input class="input-field" type="text" placeholder="Optional: Search by div class" size="50px">
+				<input class="input-field submit-btn" type="submit" value="Scrape" style="height: 35px; border-radius:10px; margin-left:15px;">
+			</form>
+			<button id="invoke-form-submit" class="button1" style="height: 35px; border-radius:10px; margin-left:15px;">Scrape to word</button>
+		</div>
+	</div>
+	
+	<br><br>
+			
+	<!-- tabs section starts here -->
+	<div class="tabs-section">	
+		<div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
+			<input type="radio" name="pcss3t" checked  id="tab1"class="tab-content-first">
+			<label for="tab1"><font style="font-size: large;">Paragraphs</font></label>
+			<input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
+			<label for="tab2"><font style="font-size: large;">Images</font></label>
+			<input type="button">
+			<label style="align-items: right;"><font style="font-size: large;">Scrape to word</font></label>
+			<ul>
+				<li class="tab-content tab-content-first typography">
+					{% if html_tags %}
+						<form  method="POST" action="/scrap-website">	
+							<input type="hidden" name="form_type" value="display-tags-form">
+							<table >
+								<thead>
+									<tr>
+										<th style="width:10%;">Select Tag</th>
+										<th style="width:20%; text-align: center">Content Type</th>
+										<th style="width:10%; text-align: center">Html Tag</th>
+										<th style="width:60%; text-align: center">Content</th>
+									</tr>
+								</thead>
 
-    
+								<tbody>
+									{% for tag_keyname, tag_list in html_tags.items() %}
+										{% if tag_keyname in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div'] %}
+											{% for tag_item in tag_list %}
+												{% set dict_items = tag_item.items()|first %}
+												<tr>
+													<td class="td-alc"><input type="checkbox" class="custom-checkbox" name="selected_tags" value="{{ tag_item }}"></td>
+													<td class="td-alc">{% if dict_items[0].startswith('h') %}Header{% else %}Paragraph{% endif %}</td>
+													<td class="td-alc">{{ dict_items[0] }}</td>
+													<td>{{ dict_items[1] }}</td>
+												</tr>
+												{% endfor %}
+											{% endif %}
+										{% endfor %}
+								</tbody>
+							</table>
+						
+						<!-- To handle multiform submit issue
+							<input class="input-field mrg-toos" type="submit" value="Save to Document">
+						</form>
+						-->
+					{% endif %}
+				</li>
+				
+				<!-- Images section -->
+				<li class="tab-content tab-content-2 typography">
+					{% if html_tags %}
+						<form  method="POST" action="/scrap-website">	
+							<input type="hidden" name="form_type" value="display-tags-form">			
+							<table style="overflow-y: auto;">
+								<thead>
+									<tr>
+										<th style="width:10%;">Select Tag</th>
+										<th style="width:20%; text-align: center">Content Type</th>
+										<th style="width:10%; text-align: center">Html Tag</th>
+										<th style="width:60%; text-align: center">Images</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									{% for tag_keyname, tag_list in html_tags.items() %}
+										{% if tag_keyname in ['img'] %}
+											{% for tag_item in tag_list %}
+												{% set dict_items = tag_item.items()|first %}
+												<tr>
+													<td class="td-alc"><input type="checkbox" class="custom-checkbox" name="selected_tags" value="{{ tag_item }}"></td>
+													<td class="td-alc">Image</td>
+													<td class="td-alc">{{ dict_items[0] }}</td>
+													<td>
+														<div class="image-tooltip" data-toggle="popover" data-placement="bottom" data-content="<img src={{ dict_items[1] }} alt='Image Description' style='max-width: 100%; max-height: 200px;'>">
+															<p style="padding-left: 10px;">{{ dict_items[1] }}</p>
+															</div>
+													</td>
+												</tr>
+											{% endfor %}
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
 
+							<input id="form-submit" class="input-field mrg-toos" type="submit" style="display: none;">
+						</form>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
 
-
-
-
-
-
-    <script>
-        function toggleParagraphs() {
-            var paragraphContainer = document.getElementById("paragraphContainer");
-
-            if (paragraphContainer.style.display === "none") {
-                paragraphContainer.style.display = "block";
-                document.querySelector('.input-field.get-tags').value = "Hide Paragraphs";
-            } else {
-                paragraphContainer.style.display = "none";
-                document.querySelector('.input-field.get-tags').value = "Show Paragraphs";
-            }
-        }
-    </script>
 </body>
 </html>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+  <script>
+
+    // Add an event listener invoke-form-submit
+    document.getElementById('invoke-form-submit').addEventListener('click', function () {
+		// Trigger the click event of form-submit
+		document.getElementById('form-submit').click();
+	  });
+
+
+
+	$(document).ready(function(){
+	  $('.image-tooltip').popover({
+		html: true,
+		trigger: 'hover'
+	  });
+	});
+	$(document).ready(function(){
+  $('.table-tooltip').popover({
+	html: true,
+	trigger: 'hover'
+  });
+});
+const progressBarContainer = document.querySelector('.progress-bar__container');
+const progressBar = document.querySelector('.progress-bar');
+const progressBarText = document.querySelector('.progress-bar__text');
+
+const progressBarStates = [0, 7, 27, 34, 68, 80, 95, 100];
+
+let time = 0;
+let endState = 100;
+
+progressBarStates.forEach(state => {
+  let randomTime = Math.floor(Math.random() * 3000);
+  setTimeout(() => {
+    if(state == endState){
+      gsap.to(progressBar, {
+        x: `${state}%`,
+        duration: 2,
+        backgroundColor: '#4895ef',
+        onComplete: () => {
+          progressBarText.style.display = "initial";
+          progressBarContainer.style.boxShadow = '0 0 5px #4895ef';
+        }
+      });
+    }else{
+      gsap.to(progressBar, {
+        x: `${state}%`,
+        duration: 2,
+      });
+    }
+  }, randomTime + time);
+  time += randomTime;
+})
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
