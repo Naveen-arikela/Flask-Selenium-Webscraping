@@ -150,7 +150,7 @@ class CreateWordDocument:
             tag_content = content
             break
 
-        if tag_key == 'p':
+        if tag_key == 'p' or tag_key == 'div':
             doc.add_paragraph(tag_content)
         elif tag_key in HEADER_TAGS:
             if tag_key == 'h1':
@@ -166,8 +166,8 @@ class CreateWordDocument:
             elif tag_key == 'h6':
                 doc.add_heading(tag_content, level=6)
         
-        # elif tag_key == 'img':
-            # self.process_image_tags(tag_content)
+        elif tag_key == 'img':
+            self.process_image_tags(tag_content)
 
     def run_create_word_document(self):
         # selected_tags = ["{'h1': 'Madhava Krishna Educational Society'}"]
@@ -176,7 +176,7 @@ class CreateWordDocument:
             tag_dict = ast.literal_eval(tag_data)
             self.insert_into_word_document(tag_dict)
         
-        filename = "report-webscrap.docx"
+        filename = "report-webscrap-result.docx"
         output_files_path = os.path.join(OUTPUT_FILES_DIRECTORY, filename)
         print(f"output_files_path: {output_files_path}")
         doc.save(output_files_path)

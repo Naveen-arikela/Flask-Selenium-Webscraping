@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Trigger Example</title>
+</head>
+<body>
+
+  <!-- Button 1 -->
+  <button id="invoke-form-submit">Button 1</button>
+
+  <!-- Button 2 -->
+  <button id="form-submit">Button 2</button>
+
+  <script>
+    // Add an event listener to Button 1
+    document.getElementById('invoke-form-submit').addEventListener('click', function () {
+      // Trigger the click event of Button 2
+      document.getElementById('form-submit').click();
+    });
+
+    // Add an event listener to Button 2
+    document.getElementById('form-submit').addEventListener('click', function () {
+      // Action to perform when Button 2 is clicked
+      alert('Button 2 Clicked!');
+    });
+  </script>
+
+</body>
+</html>

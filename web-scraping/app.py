@@ -69,7 +69,7 @@ def process_tags():
     }
     return render_template('index.html', html_tags=html_tags)
 
-webview.create_window('Centrix Webscrapper App', app)
+# webview.create_window('Centrix Webscrapper App', app)
 if __name__ == '__main__':
     app.run(debug=True)
 
