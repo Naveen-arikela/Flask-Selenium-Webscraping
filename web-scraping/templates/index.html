@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>web-scraping</title>
-	
+	<title>Centrix Web-Scraper</title>
+
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/scrap.css') }}">
-	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./scrap.css">
   
 	<style>
 		table {
@@ -16,13 +16,11 @@
 	}
 	.body{
 	height: 100%;
+	
 	}
-	.h3{
-	margin-top: 25px;
-	padding-left:50px
-	}
+	
 
-	th, td {
+	th,td {
 	border: 0px solid #3498db;
 	padding: 16px;
 	text-align: center;
@@ -37,6 +35,7 @@
 	background-color: #A69594;
 	color: white;
 	padding: 10px 16px;
+	font-size: 15px;
 	}
 	.button{
 	padding: 5px 10px;
@@ -53,15 +52,8 @@
 	.header{
 	display: flex;
 	}
-	.placeholder1{
-	padding-left: 30px;
-	padding-right: 30px;
-	}
-	/* .sticky{
-	position: fixed;
-	top: 0;
-	width: 100%
-	} */
+	
+	
 	.tabs-section{
 	width: 94%;
 	background-size: 100%;
@@ -85,10 +77,11 @@
 	}
 
 	.button1{
-	/* background-color: #04AA6D; Green */
+	
 	border: none;
-	color: #161515;
-	/* padding: 15px 32px; */
+	background-color:#A69695 ;
+	color: #f3f0f0;
+	/ padding: 15px 32px; /
 	text-align:center;
 	text-decoration: none;
 	display: inline-block;
@@ -115,21 +108,18 @@
 	border: 0;
 	border-radius: 0;
 	}
-	.h2{
-	margin-left: 40px;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	font-size: larger;
-	padding-left: 25px;
-
+	
 	}
 	.placeholder11{
 	display: flex;
+	margin-left: 0%;
 	}
 	.login{
 	display: flex;
 	}
 	.img{
 	border-radius: 50%;
+	display:flex;
 	}
 	.head_lg{
 	display: flex;
@@ -147,30 +137,30 @@
 	align-items: center;
 	height: 40px;
 	width: 50%;
-	padding-left:300px;
 	padding-top:10px;
+	margin-left:20% ;
 	}
 
-	.progress-bar__container {
-	width: 50%;
+	/* .progress-bar__container {
+	width: 10%;
 	height: 16px;
 	border-radius: 2rem;
-	position: relative;
+	/ position: relative; /
 	overflow: hidden;
 	transition: all 0.5s;
 	will-change: transform;
 	box-shadow: 0 0 5px #000000;
-	margin-left: 40px;
+	margin-left: 75px;
 	color: #0a0a0a;
-	padding-left:200px;
-	}
+	padding-left:100px;
+	} */
 
 	.progress-bar {
 	position: absolute;
 	height: 100%;
 	width: 50%;
 	content: "";
-	background-color: #e76f51;
+	background-color: #f6f4f3;
 	top:0;
 	bottom: 0;
 	left: -100%;
@@ -187,48 +177,76 @@
 	display: none;
 	}
 	.tab-content-last{
-	margin-left: 70%;
-	padding-left: 350px;
+	margin-left: 80%;
+	margin-right: 100px;
+	/ padding-left: 450px; /
 	align-content: space-around;
 	}
+	h1 {
+		font: 35px/50px Gabriela, Georgia, serif;
+    text-align: justify;
+    text-shadow: 3px 3px rgba(0,0,0,0.1);
+    color: #fff;
+    margin: 0; / Remove default margin /
+    padding-right: 10%;
+	width: 350px;
+	text-align: center;
+	display: inline;
+	
+}
 
 
 	.input-field{
 		height:30px;
-		margin-left:15px;
+		border-style: none;
 		border-radius:10px;
+	}
+	.td-al-l{
+		text-align: left;
+	}
+	.image-tooltip.popover {
+	max-width: none;
+	width: auto;
+	padding: 0;
+	stroke: none;
+	z-index: 1;
+	}
+
+	.image-tooltip.popover .popover-inner {
+	border: 0;
+	border-radius: 0;
+	z-index: 1;
 	}
 	</style>
 </head>
 
-<body>
+<body >
 	<br>
 
 	<!-- logo-section  starts here-->
 	<div class="logo-section head_lg">
-		<img src="{{ url_for('static', filename='images/centrix-healthcare.png') }}"alt="centrix-healthcare" width="55px" height="55px"style="margin-left:30px;border-radius:45%">
-		<h1 style="padding-top: 2px; padding-left: 15px;">WEB-SCRAPING</h1>
-		<!--
-		<div class="container">
+		<img src="{{ url_for('static', filename='images/centrix-healthcare.png') }}" alt="centrix-healthcare" width="45px" height="45px"style="margin-left:20px; border-radius:50%">
+		<h1 style="padding-top: 2px;padding-left: 2px; color: #4b5859" >  WEB-SCRAPING  </h1>
+		
+		<div class="container"style="display:none">
 			<div class="progress-bar__container">
 				<div class="progress-bar">
 					<span class="progress-bar__text">Uploaded Successfully!</span>
 				</div>
 			</div>
 		</div>
-		-->
 	</div>
 
  	<!-- input-section starts here -->
-	<div class="input-section">
+	 <div class="input-section">
 		<br>
-		<div class="header" style="align-items: center; margin-left:20%;">
+		<div class="header" style="align-items: center; margin-left:10%;">
 			<form method="POST" action="/scrap-website">
                 <input class="input-field" type="hidden" name="form_type" value="scrap-website-form">
 
 				<input class="input-field" type="text" name="website_url" placeholder="Enter website url" size="50px" required>
-				<input class="input-field" type="text" placeholder="Optional: Search by div class" size="50px">
-				<input class="input-field submit-btn" type="submit" value="Scrape" style="height: 35px; border-radius:10px; margin-left:15px;">
+				<input class="input-field"style="margin-left:15px ;" type="text" placeholder="Optional: Search by div class" size="50px">
+				<input class="input-field submit-btn" type="submit" value="Scrape" style="height: 35px; border-radius:10px; margin-left:15px;background-color: #A69594;color: #f3f0f0;border: none;padding-left:5px">
 			</form>
 			<button id="invoke-form-submit" class="button1" style="height: 35px; border-radius:10px; margin-left:15px;">Scrape to word</button>
 		</div>
@@ -240,11 +258,10 @@
 	<div class="tabs-section">	
 		<div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
 			<input type="radio" name="pcss3t" checked  id="tab1"class="tab-content-first">
-			<label for="tab1"><font style="font-size: large;">Paragraphs</font></label>
+			<label for="tab1"><font style="font-size: large;"><strong>Paragraphs</strong></font></label>
 			<input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
-			<label for="tab2"><font style="font-size: large;">Images</font></label>
-			<input type="button">
-			<label style="align-items: right;"><font style="font-size: large;">Scrape to word</font></label>
+			<label for="tab2"><font style="font-size: large;"><strong>Images</strong></font></label>
+			
 			<ul>
 				<li class="tab-content tab-content-first typography">
 					{% if html_tags %}
@@ -253,8 +270,8 @@
 							<table >
 								<thead>
 									<tr>
-										<th style="width:10%;">Select Tag</th>
-										<th style="width:20%; text-align: center">Content Type</th>
+										<th style="width:15%;">Select Tag</th>
+										<th style="width:15%; text-align: center">Content Type</th>
 										<th style="width:10%; text-align: center">Html Tag</th>
 										<th style="width:60%; text-align: center">Content</th>
 									</tr>
@@ -268,8 +285,8 @@
 												<tr>
 													<td class="td-alc"><input type="checkbox" class="custom-checkbox" name="selected_tags" value="{{ tag_item }}"></td>
 													<td class="td-alc">{% if dict_items[0].startswith('h') %}Header{% else %}Paragraph{% endif %}</td>
-													<td class="td-alc">{{ dict_items[0] }}</td>
-													<td>{{ dict_items[1] }}</td>
+													<td>{{ dict_items[0] }}</td>
+													<td class="td-al-l">{{ dict_items[1] }}</td>
 												</tr>
 												{% endfor %}
 											{% endif %}
@@ -292,8 +309,8 @@
 							<table style="overflow-y: auto;">
 								<thead>
 									<tr>
-										<th style="width:10%;">Select Tag</th>
-										<th style="width:20%; text-align: center">Content Type</th>
+										<th style="width:15%;">Select Tag</th>
+										<th style="width:15%; text-align: center">Content Type</th>
 										<th style="width:10%; text-align: center">Html Tag</th>
 										<th style="width:60%; text-align: center">Images</th>
 									</tr>
@@ -309,7 +326,7 @@
 													<td class="td-alc">Image</td>
 													<td class="td-alc">{{ dict_items[0] }}</td>
 													<td>
-														<div class="image-tooltip" data-toggle="popover" data-placement="bottom" data-content="<img src={{ dict_items[1] }} alt='Image Description' style='max-width: 100%; max-height: 200px;'>">
+														<div class="image-tooltip" data-toggle="popover" data-placement="bottom" data-content="<img src={{dict_items[1]}} alt='Image Description' style='max-width: 100%; max-height: 200px;'>">
 															<p style="padding-left: 10px;">{{ dict_items[1] }}</p>
 															</div>
 													</td>
@@ -319,7 +336,6 @@
 									{% endfor %}
 								</tbody>
 							</table>
-
 							<input id="form-submit" class="input-field mrg-toos" type="submit" style="display: none;">
 						</form>
 					{% endif %}
@@ -394,10 +410,3 @@ progressBarStates.forEach(state => {
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
