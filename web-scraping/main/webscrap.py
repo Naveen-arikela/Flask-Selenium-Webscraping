@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 from tabulate import tabulate
 
 from docx import Document
@@ -32,10 +32,17 @@ chrome_driver = get_local_chrome_driver_connection()
 class SearchWithContainers:
     def __init__(self, domain_name, container_tag='body', output_filename='web_scrape'):
         self.domain_name = domain_name
+        self.site_name = self.get_domain_name()
         self.container_tag = container_tag
         self.soup_object = self.get_soup_object()
         self.output_file = output_filename + FILE_EXTENSION
-
+    
+    def get_domain_name(self):
+        # url = "https://www.thelancet.com/journals/landig/article/PIIS2589-7500(23)00208-X/fulltext"
+        parsed_url = urlparse(self.domain_name)
+        domain_name = parsed_url.netloc
+        return domain_name
+    
     def get_soup_object(self):
         html_content = requests.get(self.domain_name).text
         html_content = self.get_webpage_content()
@@ -109,7 +116,13 @@ class SearchWithContainers:
                     
             if tag_name == 'img':
                 tag_text = tag.get('src', '')
-                tags_dict[tag_name].append({tag_name: tag_text})
+                extension = tag_text.rsplit('.')[-1]
+                if extension.lower() in ['gif', 'jpg', 'jpeg']:
+                    if not tag_text.startswith('https'):
+                        # url = "https://www.thelancet.com/journals/landig/article/PIIS2589-7500(23)00208-X/fulltext"
+                        modified_string = tag_text.lstrip('/')
+                        tag_text = f"https://{self.site_name}/{modified_string}"
+                    tags_dict[tag_name].append({tag_name: tag_text})
 
             elif tag_name in PARAGRAPH_TAGS and tag_text:
                 tags_dict['p'].append({tag_name: tag_text})
